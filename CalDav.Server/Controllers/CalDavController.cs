@@ -149,6 +149,7 @@ namespace CalDav.Server.Controllers {
 		public virtual ActionResult PropFind(string id) {
 			var depth = Request.Headers["Depth"].ToInt() ?? 0;
 			var repo = GetService<ICalendarRepository>();
+            if(repo==null) throw new Exception("Repo cannot be null");
 			var calendar = repo.GetCalendarByID(id);
 
 			var xdoc = GetRequestXml();
